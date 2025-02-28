@@ -1,0 +1,40 @@
+CC	= @CC@ -fPIC
+CFLAGS	= @CFLAGS@
+COMPILE  = $(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES)
+
+LD	= @CC@
+LDFLAGS	= @LDFLAGS@
+SOFLAGS = @SOFLAGS@
+RANLIB	= @RANLIB@
+
+SYS_LIBS= @LIBS@
+
+INSTALL  = install
+
+prefix   = @prefix@
+exec_prefix = @exec_prefix@
+bindir   = @bindir@
+libdir   = @libdir@
+includedir = @includedir@
+
+LIB_H	 = bgp_macros.h common.h
+LIB_O	 = cfr_files.o mrt_entry.o file_buffer.o
+OTHER    = *.in configure README*
+
+all: bgpgill libbgpgill.so
+
+libbgpgill.a: $(LIB_H) $(LIB_O) Makefile cfr_files.h
+	ar r libbgpgill.a $(LIB_O)
+	$(RANLIB) libbgpgill.a
+
+libbgpgill.so: libbgpgill.a
+	$(COMPILE) $(LDFLAGS) $(SOFLAGS) -o libbgpgill.so $(LIB_O) $(SYS_LIBS)
+
+bgpgill: main.c libbgpgill.a
+	$(COMPILE) $(LDFLAGS) -o bgpgill main.c libbgpgill.a $(SYS_LIBS)
+
+clean:
+	rm -f libbgpgill.so libbgpgill.a example bgpgill $(LIB_O)
+
+install: all
+	$(INSTALL) libbgpgill.so libbgpgill.a $(DESTDIR)$(libdir)
