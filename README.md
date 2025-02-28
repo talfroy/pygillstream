@@ -214,6 +214,3 @@ for msg in pygillstream.broker.parse_one_file(fn):
 print(cumulated_size / nb_msg)
 ```
 
-## License
-
-This project is licensed under the **Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**. For more details, see the [license documentation](https://creativecommons.org/licenses/by-nc/4.0/).
