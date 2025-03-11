@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Thomas Alfroy
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #ifndef __CIRCULAR_BUFFER_H__
 #define __CIRCULAR_BUFFER_H__
 

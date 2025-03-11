@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 2025 Thomas Alfroy
+ * SPDX-FileCopyrightText: 2025 Thomas Alfroy
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
 
 #define MRT_TYPE_BGP4MP			    16      /* MSG_PROTOCOL_BGP4MP */
 #define MRT_TYPE_BGP4MP_ET          17      /* MSG_PROTOCOL_BGP4MP_ET */

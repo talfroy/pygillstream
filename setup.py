@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Thomas Alfroy
+#
+# SPDX-License-Identifier: GPL-2.0-only
+
 from setuptools import setup, find_packages
 import os
 

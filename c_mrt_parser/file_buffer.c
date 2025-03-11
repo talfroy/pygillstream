@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2025 Thomas Alfroy
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #include "file_buffer.h"
 
 

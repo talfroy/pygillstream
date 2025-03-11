@@ -1,4 +1,16 @@
-// This file comes from libbgpdump
+/** 
+  cfile_tools.c
+ 
+  A library to deal transparently with possibly compressed files.  
+  Documentation in the function headers and in cfile_tools.h
+
+  Copyright (C) 2004 by Arno Wagner <arno.wagner@acm.org> 
+  Distributed under the Gnu Public License version 2 or the modified
+  BSD license (see file COPYING)
+
+  Support for gzip added by Bernhard Tellenbach <bernhard.tellenbach@gmail.com>   
+  SPDX-License-Identifier: GPL-2.0-only
+*/
 
 #define _GNU_SOURCE
 #define _FILE_OFFSET_BITS 64

@@ -10,6 +10,7 @@
   Copyright (C) 2004 by Arno Wagner <arno.wagner@acm.org> 
   Distributed under the Gnu Public License version 2 or the modified
   BSD license (see file COPYING)
+  SPDX-License-Identifier: GPL-2.0-only
 
   Support for gzip added by Bernhard Tellenbach <bernhard.tellenbach@gmail.com>
 
@@ -24,9 +25,6 @@
   - bzip2  
   - gzip
 */
-
-
-// This file comes from libbgpdump
 
 #ifndef _CFILE_TOOLS_DEFINES
 #define _CFILE_TOOLS_DEFINES

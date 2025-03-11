@@ -1,3 +1,10 @@
+/*
+ * SPDX-FileCopyrightText: 2025 2025 Thomas Alfroy
+ * SPDX-FileCopyrightText: 2025 Thomas Alfroy
+ *
+ * SPDX-License-Identifier: GPL-2.0-only
+ */
+
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
