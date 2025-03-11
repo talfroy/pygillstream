@@ -37,4 +37,5 @@ clean:
 	rm -f libbgpgill.so libbgpgill.a example bgpgill $(LIB_O)
 
 install: all
+	$(INSTALL) -d $(DESTDIR)$(libdir)
 	$(INSTALL) libbgpgill.so libbgpgill.a $(DESTDIR)$(libdir)

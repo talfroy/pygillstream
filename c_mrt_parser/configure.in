@@ -40,6 +40,13 @@ case `uname` in
 	*)       SOFLAGS="$SOFLAGS -shared" ;;
 esac
 
+AC_ARG_WITH([libdir],
+    [AS_HELP_STRING([--with-libdir=DIR], [Specify the library installation directory (default is ${prefix}/lib)])],
+    [libdir="$withval"],
+    [libdir="\${prefix}/lib"]
+)
+
+AC_SUBST(libdir)
 AC_SUBST(CFLAGS)
 AC_SUBST(LIBS)
 AC_SUBST(SOFLAGS)

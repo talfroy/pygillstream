@@ -6,7 +6,7 @@ import os
 from requests.exceptions import HTTPError, ConnectionError, Timeout
 import ctypes
 from ctypes import c_int, c_uint32, c_uint16, c_char, c_void_p, POINTER, Structure
-import sys
+import configparser
 
 
 BGPDUMP_MAX_FILE_LEN	= 1024
@@ -27,6 +27,11 @@ BGP_TYPE_KEEPALIVE          = 4
 BGP_TYPE_UPDATE             = 2
 BGP_TYPE_NOTIFICATION       = 3
 BGP_TYPE_STATE_CHANGE       = 5
+
+
+config = configparser.ConfigParser()
+config.read("config.ini")
+GILLSTREAM_LIBRARY_PATH = config.get("settings", "GILLSTREAM_LIBRARY_PATH", fallback="/usr/local/lib/")
 
 
 # Import CFRFILE structure from C library
@@ -170,7 +175,7 @@ class BGPmessage:
 
         return res
 
-mylib = ctypes.CDLL("/usr/local/lib/libbgpgill.so")
+mylib = ctypes.CDLL("{}/libbgpgill.so".format(GILLSTREAM_LIBRARY_PATH))
 
 mylib.Circ_buf_create.argtypes = (ctypes.c_char_p,)
 mylib.Circ_buf_create.restype  = ctypes.POINTER(FILE_BUF_T)

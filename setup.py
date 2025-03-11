@@ -1,4 +1,29 @@
 from setuptools import setup, find_packages
+import os
+
+
+def update_library_directory(file_path, replacement :str):
+    try:
+        with open(file_path, "r") as file:
+            lines = file.readlines()
+
+        with open(file_path, "w") as file:
+            for line in lines:
+                if line.strip().startswith("GILLSTREAM_LIBRARY_PATH"):
+                    file.write("GILLSTREAM_LIBRARY_PATH='{}'\n".format(replacement))
+                else:
+                    file.write(line)
+        print(f"Updated LIBRARY_DIRECTORY in {file_path}")
+    except FileNotFoundError:
+        print(f"Error: File {file_path} not found.")
+    except Exception as e:
+        print(f"Error updating file: {e}")
+
+
+libdir = os.environ.get("GILLSTREAM_LIBRARY_PATH", "/usr/local/lib/")
+
+update_library_directory("pygillstream/broker.py", libdir)
+
 
 setup(
     name='pygillstream',

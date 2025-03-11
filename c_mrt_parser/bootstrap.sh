@@ -2,4 +2,4 @@
 
 autoheader
 autoconf
-./configure
+./configure --with-libdir=/Users/thomasalfroy/test
