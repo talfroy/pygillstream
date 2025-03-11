@@ -18,12 +18,11 @@ def update_library_directory(file_path, replacement :str):
         print(f"Error: File {file_path} not found.")
     except Exception as e:
         print(f"Error updating file: {e}")
-
+        
 
 libdir = os.environ.get("GILLSTREAM_LIBRARY_PATH", "/usr/local/lib/")
 
 update_library_directory("pygillstream/broker.py", libdir)
-
 
 setup(
     name='pygillstream',

@@ -22,11 +22,28 @@ Alternatively, you can manually compile the C MRT parser and install the package
 git clone https://forge.icube.unistra.fr/thomas.alfroy/pygillstream
 cd pygillstream
 cd c_mrt_parser/
-./bootstrap.sh
+autoheader
+autoconf
+./configure
 make
 sudo make install
 cd ..
 python3 -m pip install .
+```
+
+In case you want to specify the path where the **libbgpgill.so** file must be installed, use the following commands instead:
+
+```bash
+git clone https://forge.icube.unistra.fr/thomas.alfroy/pygillstream
+cd pygillstream
+cd c_mrt_parser/
+autoheader
+autoconf
+./configure --with-libdir=/my/custom/path/
+make
+sudo make install
+cd ..
+GILLSTREAM_LIBRARY_PATH=/my/custom/path/ python3 -m pip install .
 ```
 
 > **Note:** Ensure you have GCC version 9 or higher before proceeding with the installation.

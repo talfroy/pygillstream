@@ -6,7 +6,6 @@ import os
 from requests.exceptions import HTTPError, ConnectionError, Timeout
 import ctypes
 from ctypes import c_int, c_uint32, c_uint16, c_char, c_void_p, POINTER, Structure
-import configparser
 
 
 BGPDUMP_MAX_FILE_LEN	= 1024
@@ -29,9 +28,7 @@ BGP_TYPE_NOTIFICATION       = 3
 BGP_TYPE_STATE_CHANGE       = 5
 
 
-config = configparser.ConfigParser()
-config.read("config.ini")
-GILLSTREAM_LIBRARY_PATH = config.get("settings", "GILLSTREAM_LIBRARY_PATH", fallback="/usr/local/lib/")
+GILLSTREAM_LIBRARY_PATH='/usr/local/lib/'
 
 
 # Import CFRFILE structure from C library
@@ -177,11 +174,11 @@ class BGPmessage:
 
 mylib = ctypes.CDLL("{}/libbgpgill.so".format(GILLSTREAM_LIBRARY_PATH))
 
-mylib.Circ_buf_create.argtypes = (ctypes.c_char_p,)
-mylib.Circ_buf_create.restype  = ctypes.POINTER(FILE_BUF_T)
+mylib.File_buf_create.argtypes = (ctypes.c_char_p,)
+mylib.File_buf_create.restype  = ctypes.POINTER(FILE_BUF_T)
 
-mylib.Circ_buf_close_dump.argtypes = (ctypes.POINTER(FILE_BUF_T),)
-mylib.Circ_buf_close_dump.restype  = None
+mylib.File_buf_close_dump.argtypes = (ctypes.POINTER(FILE_BUF_T),)
+mylib.File_buf_close_dump.restype  = None
 
 mylib.Read_next_mrt_entry.argtypes = (ctypes.POINTER(FILE_BUF_T),)
 mylib.Read_next_mrt_entry.restype  = ctypes.POINTER(MRT_ENTRY)
@@ -292,7 +289,7 @@ def parse_one_file(fn :str):
         int: return 0 if evrything went well, -1 otherwise.
     """
 
-    dumper = mylib.Circ_buf_create(fn.encode())
+    dumper = mylib.File_buf_create(fn.encode())
 
     while dumper.contents.eof == 0:
         entry = mylib.Read_next_mrt_entry(dumper)
@@ -308,7 +305,7 @@ def parse_one_file(fn :str):
 
             #mylib.MRTentry_free(entry)
         
-    mylib.Circ_buf_close_dump(dumper)
+    mylib.File_buf_close_dump(dumper)
 
     return 0
 
@@ -424,7 +421,7 @@ class GillStream:
         """
 
         if self.dumper:
-            mylib.Circ_buf_close_dump(self.dumper)
+            mylib.File_buf_close_dump(self.dumper)
             self.dumper = None
 
         if self.actFile:
@@ -446,7 +443,7 @@ class GillStream:
             print("Skip file {}, unable to download".format(url))
             return 2
         
-        self.dumper = mylib.Circ_buf_create(fn.encode())
+        self.dumper = mylib.File_buf_create(fn.encode())
         self.actFile = fn
 
         return 1
@@ -495,7 +492,7 @@ class GillStream:
                     #mylib.MRTentry_free(entry)
 
         if self.dumper:
-            mylib.Circ_buf_close_dump(self.dumper)
+            mylib.File_buf_close_dump(self.dumper)
             self.dumper = None
 
         if self.actFile:
