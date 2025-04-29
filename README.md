@@ -4,12 +4,19 @@
 
 ## Installation
 
+### Required packages
+
+```bash
+autoconf
+libbz2-dev
+```
+
 ### Option 1: Using the provided build script
 
 To install the package, clone the repository and run the following commands:
 
 ```bash
-git clone https://forge.icube.unistra.fr/thomas.alfroy/pygillstream
+git clone https://github.com/talfroy/pygillstream.git
 cd pygillstream
 ./build_all.sh
 ```
@@ -19,7 +26,7 @@ cd pygillstream
 Alternatively, you can manually compile the C MRT parser and install the package:
 
 ```bash
-git clone https://forge.icube.unistra.fr/thomas.alfroy/pygillstream
+git clone https://github.com/talfroy/pygillstream.git
 cd pygillstream
 cd c_mrt_parser/
 autoheader
@@ -34,7 +41,7 @@ python3 -m pip install .
 In case you want to specify the path where the **libbgpgill.so** file must be installed, use the following commands instead:
 
 ```bash
-git clone https://forge.icube.unistra.fr/thomas.alfroy/pygillstream
+git clone https://github.com/talfroy/pygillstream.git
 cd pygillstream
 cd c_mrt_parser/
 autoheader
