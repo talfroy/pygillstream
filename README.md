@@ -216,7 +216,7 @@ url = "https://archive.routeviews.org/route-views3/bgpdata/2025.02/UPDATES/updat
 response = requests.get(url, stream=True, timeout=timeout)
 
 if response.status_code != 200:
-    return None
+    exit(1)
 
 fn = "/tmp/bgp_update_file.bz2"
 
